@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,8 +11,43 @@
     <title>index</title>
     <!--Boostrap Css-->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
+<!--Logout button-->
+<?php
+    if (isset($_POST['logout'])){
+        session_destroy();
+        header('location:index.php');
+    }
+?>
+<div class="row h-nav">
+    <div class="col">
+        <h5>Coffee Shop</h5>
+    </div>
+    <div class="col">
+        <?php
+            if ($_SESSION['SuccessMsg']){?>
+                <form action="index.php" method="post">
+                    <button style="display: inline" type="submit" name="logout" onclick="return confirm('Are you sure?');"
+                    class="btn btn-danger btn-sm float-end ms-3">logout</button>
+                    <a href="" class="btn btn-info btn-sm float-end ">
+                        <?php echo $_SESSION['SuccessMsg'] ?></a>
+                </form>
+
+
+                <?php
+            } else { ?>
+                <a href="/loginregisteration/register.php" class="btn btn-info btn-sm float-end ms-3">Register</a>
+        <a href="/loginregisteration/login.php" class="btn btn-success btn-sm float-end ">login</a>
+                <?php
+        }
+        ?>
+
+
+
+    </div>
+</div>
     <div class="container">
         <div class="col">
             <div class="row">
@@ -37,8 +75,8 @@
                     ?>
                     <tr>
                         <td><?php echo $key+1 ?></td>
-                        <td><?php echo $post['coffee'] ?></td>
-                        <td><?php echo $post['price'] ?></td>
+                        <td><?php echo $post['coffee']; ?></td>
+                        <td><?php echo $post['price']; ?></td>
                     </tr>
                     <?php } ?>
                     </tbody>

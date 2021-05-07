@@ -6,3 +6,11 @@
     text-decoration: none;
     color: brown;
 }
+.home a{
+    text-decoration: none;
+    display: inline-block;
+}
+.h-nav{
+    background: #5576AD;
+    padding: 15px;
+}

@@ -16,10 +16,13 @@
 </head>
 <body>
 <div class="row" id="nav">
-    <div class="col-6 text-center">
-        <a  href="admindashboard.php">Today</a>
+    <div class="col-4 text-center">
+        <a  href="/admindashboard.php">Today</a>
     </div>
-    <div class="col-6 text-center">
+    <div class="col-4 text-center">
         <a href="../tomorrowmenu.php">Tomorrow</a>
+    </div>
+    <div class="col-4 text-center">
+        <a href="/user/userDashboard.php">User</a>
     </div>
 </div>

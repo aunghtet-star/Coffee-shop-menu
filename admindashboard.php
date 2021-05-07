@@ -1,12 +1,22 @@
 <?php
 session_start();
 ob_start();
+if (!($_SESSION['SuccessMsg'])){
+    header('location:index.php');
+}else{
+    header('locaion:admindashboard.php');
+}
+if (!($_SESSION['role'] == 'admin')){
+    header('location:index.php');
+}
 include_once "admindashboard/header.php" ?>
     <?php
     include_once "connect.php";
     $db = mysqli_connect("127.0.0.1","root","","coffeeshop");
     $query = "SELECT * FROM today";
     $posts = mysqli_query($db,$query);
+    $post_array = mysqli_fetch_assoc($posts);
+    $_SESSION['post_array'] = $post_array;
     ?>
     <div class="container">
         <div class="col">
@@ -16,7 +26,8 @@ include_once "admindashboard/header.php" ?>
 
                         <div class="card-header">
                             <div class="card-title">Today Menu
-                                <a href="to_create.php" class="btn btn-info btn-sm float-end">Add New</a>
+                                <a href="to_create.php" class="btn btn-info btn-sm float-end ms-3">Add New</a>
+                                <a href="index.php" class="btn btn-info btn-sm float-end ">Home</a>
                             </div>
                         </div>
                     <?php if (isset($_SESSION['successMsg'])): ?>

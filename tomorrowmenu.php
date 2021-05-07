@@ -1,6 +1,9 @@
 <?php
 session_start();
 ob_start();
+if (!($_SESSION['SuccessMsg'])){
+    header('location:index.php');
+}
 include_once "admindashboard/header.php" ?>
 <?php
 include_once "connect.php";
